@@ -1,0 +1,1 @@
+create sequence people_seq START 11;

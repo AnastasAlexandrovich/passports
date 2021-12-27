@@ -1,0 +1,1 @@
+CREATE VIEW active_passports AS SELECT * FROM passports WHERE passports.status = 'ACTIVE'
