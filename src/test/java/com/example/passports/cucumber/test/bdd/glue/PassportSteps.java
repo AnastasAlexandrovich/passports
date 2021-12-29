@@ -90,7 +90,7 @@ public class PassportSteps {
     public void getResultOfThePerson(){
 
         validatePassport();
-
+        System.out.println("Test 1");
     }
 
     private void validatePassport(){

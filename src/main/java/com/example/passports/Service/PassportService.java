@@ -1,6 +1,5 @@
 package com.example.passports.Service;
 
-import com.example.passports.DTO.PassportListFindDTO;
 import com.example.passports.Entity.Passport;
 import com.example.passports.Entity.People;
 import com.example.passports.Entity.ViewActivePassports;
@@ -41,15 +40,13 @@ public class PassportService {
 
     //2)	Получение данных о всех паспортных данных по фамилии, имени, году рождения.
     // Любой из этих параметров может быть не задан. Если не задан ни один параметр – необходимо вывести все паспортные данные.
-    public List<Passport> getAllByArguments(PassportListFindDTO passportListFindDTO) {
-        if (passportListFindDTO.getSurname() == null &&
-                passportListFindDTO.getName() == null &&
-                passportListFindDTO.getDateOfBirth() == null) {
+    public List<Passport> getAllByArguments(String surname, String name, String dateOfBirth) {
+        if (surname == null && name == null && dateOfBirth == null) {
             return passportRepository.findAll();
         }
 
-        List<People> peopleList = peopleRepository.findAllBySurnameOrNameOrDateOfBirth(passportListFindDTO.getSurname(),
-                passportListFindDTO.getName(), passportListFindDTO.getDateOfBirth());
+        List<People> peopleList = peopleRepository.findAllBySurnameOrNameOrDateOfBirth(surname,
+                name, dateOfBirth);
 
         List<Passport> passportList = new ArrayList<>();
         for (People p : peopleList) {

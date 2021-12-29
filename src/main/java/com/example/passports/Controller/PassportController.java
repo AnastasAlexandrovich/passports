@@ -1,12 +1,14 @@
 package com.example.passports.Controller;
 
-import com.example.passports.DTO.PassportListFindDTO;
 import com.example.passports.Entity.Passport;
 import com.example.passports.Entity.ViewActivePassports;
 import com.example.passports.Service.PassportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 //RestController чтобы делать запрос
@@ -27,8 +29,8 @@ public class PassportController {
 
     //Get запрос на 2)	Получение данных о всех паспортных данных по фамилии, имени, году рождения.
     @GetMapping("/get-all-by-arguments")
-    public List<Passport> getAllByArguments(@RequestBody PassportListFindDTO passportListFindDTO){
-        return passportService.getAllByArguments(passportListFindDTO);
+    public List<Passport> getAllByArguments(@RequestParam String surname, @RequestParam String name, @RequestParam String dateOfBirth){
+        return passportService.getAllByArguments(surname, name, dateOfBirth);
     }
 
     @GetMapping("/activate")
